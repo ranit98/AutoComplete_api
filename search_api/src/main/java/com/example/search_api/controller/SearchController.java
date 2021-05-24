@@ -25,9 +25,17 @@ public class SearchController {
   public ResponseEntity<List<String>> getSearchResults(String searchString){
     List<String> searchResults = new ArrayList<String>();
 
-    searchResults = searchService.findRestaurant(searchString);
-    searchResults = searchService.findLocation(searchString);
-    searchResults = searchService.findMenu(searchString);
+    for(String result : searchService.findRestaurant(searchString)){
+      searchResults.add(result);
+    }
+
+    for(String result : searchService.findLocation(searchString)){
+      searchResults.add(result);
+    }
+
+    for(String result : searchService.findMenu(searchString)){
+      searchResults.add(result);
+    }
 
     return ResponseEntity.ok().body(searchResults);
   }
